@@ -28,6 +28,11 @@ def calculate(num: int):
 def main():
     global recursion
     try:
+        del output[0: -1]
+        del output[-1]
+    except IndexError:
+        pass
+    try:
         recursion = 0
         calculate(positive_integer(input('输入正整数')))
     except TypeError:
@@ -40,12 +45,11 @@ def main():
     else:
         pass
     finally:
-        for i in output:
-            print(i)
-        del output[0: -1]
-        del output[-1]
+        pass
 
     
 if __name__ == '__main__':
     while True:
         main()
+        for i in output:
+            print(i)

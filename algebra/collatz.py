@@ -25,7 +25,7 @@ def calculate(num: int):
         calculate(int(num * 3 + 1))
 
 
-def main():
+def main(get):
     global recursion
     try:
         del output[0: -1]
@@ -34,7 +34,7 @@ def main():
         pass
     try:
         recursion = 0
-        calculate(positive_integer(input('输入正整数')))
+        calculate(positive_integer(get))
     except TypeError:
         pass
     except OverflowError:
@@ -46,10 +46,25 @@ def main():
         pass
     finally:
         pass
+    return output
+
+
+def collatz(got):
+    def inside():
+        while True:
+            get = main(got(False, '输入正整数'))
+            for iter_ in get:
+                got(True, iter_)
+    return inside
+
+
+@collatz
+def display(mode: bool, data: str):
+    if not mode:
+        return input(data)
+    elif mode:
+        print(data)
 
     
 if __name__ == '__main__':
-    while True:
-        main()
-        for i in output:
-            print(i)
+    display()

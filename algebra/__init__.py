@@ -1,5 +1,8 @@
-recursion = 0
-output = []
+from typing import Union
+
+
+recursion: int = 0
+output: list[Union[str, int]] = []
 
 
 def positive_integer(get):

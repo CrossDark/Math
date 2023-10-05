@@ -1,4 +1,9 @@
 from algebra import output, recursion, positive_integer
+from typing import Union
+
+
+out_put: list[Union[str, int]] = output
+recursions: int = recursion
 
 
 class EndError(Exception):
@@ -10,30 +15,30 @@ def calculate(num: int):
 
     :rtype: int
     """
-    global recursion
-    global output
-    recursion += 1
+    global recursions
+    global out_put
+    recursions += 1
     if num == 1:
-        output.append(1)
-        output.append('总共' + str(recursion) + '次')
+        out_put.append(1)
+        out_put.append('总共' + str(recursions) + '次')
         raise EndError()
     if num % 2 == 0:
-        output.append(num)
+        out_put.append(num)
         calculate(int(num / 2))
     else:
-        output.append(num)
+        out_put.append(num)
         calculate(int(num * 3 + 1))
 
 
-def main(get):
-    global recursion
+def main(get: str) -> list:
+    global recursions
     try:
         del output[0: -1]
         del output[-1]
     except IndexError:
         pass
     try:
-        recursion = 0
+        recursions = 0
         calculate(positive_integer(get))
     except TypeError:
         pass
@@ -59,7 +64,7 @@ def collatz(got):
 
 
 @collatz
-def display(mode: bool, data: str):
+def display(mode: bool, data: str) -> str:
     if not mode:
         return input(data)
     elif mode:
